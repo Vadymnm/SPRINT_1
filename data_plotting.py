@@ -10,6 +10,8 @@ def create_and_save_plot(data, ticker, period, filename=None):
             dates = data.index.to_numpy()
             plt.plot(dates, data['Close'].values, label='Close Price')
             plt.plot(dates, data['Moving_Average'].values, label='Moving Average')
+            plt.plot(dates, data['High'].values, label='High')
+            plt.plot(dates, data['Low'].values, label='Low')
         else:
             print("Информация о дате отсутствует или не имеет распознаваемого формата.")
             return
@@ -18,7 +20,6 @@ def create_and_save_plot(data, ticker, period, filename=None):
             data['Date'] = pd.to_datetime(data['Date'])
         plt.plot(data['Date'], data['Close'], label='Close Price')
         plt.plot(data['Date'], data['Moving_Average'], label='Moving Average')
-
     plt.title(f"{ticker} Цена акций с течением времени")
     plt.xlabel("Дата")
     plt.ylabel("Цена")
