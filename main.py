@@ -18,10 +18,14 @@ def main():
     stock_data = dd.fetch_stock_data(ticker, period)
 #    print(stock_data)
 
+    # Generate filename and save DataFrame in .csv format
+    filename = f"{ticker}_{period}_DataFrame.csv"
+    dd.export_data_to_csv(stock_data, filename)
+
     # Add moving average column to the data frame
     stock_data = dd.add_moving_average(stock_data)
 
-    # Plot the data
+    # Plot the data and save in .png file
     dplt.create_and_save_plot(stock_data, ticker, period)
 
     # Average Closed data calculation
