@@ -34,6 +34,12 @@ def main():
     # Price fluctuation  analysis
     dd.notify_if_strong_fluctuations(stock_data, threshold)
 
+    rsi = dd.rsi_calculation(stock_data)
+#    print(rsi)
+
+#    filename_ = f"{ticker}_{period}_RSI_chart.png"
+    dplt.create_and_save_rsi_plot(stock_data, ticker, period, rsi)
+
 
 if __name__ == "__main__":
     main()

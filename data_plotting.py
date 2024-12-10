@@ -30,3 +30,35 @@ def create_and_save_plot(data, ticker, period, filename=None):
 
     plt.savefig(filename)
     print(f"График сохранен как {filename}")
+
+
+def create_and_save_rsi_plot(data, ticker, period, rsi, filename=None):
+    """  Create new list  for picture. """
+    plt.figure(figsize=(10, 6))
+    """  Create two charts on the same figure."""
+    ax1 = plt.subplot2grid((10, 1), (0, 0), rowspan=4, colspan=1)
+    ax2 = plt.subplot2grid((10, 1), (6, 0), rowspan=4, colspan=1)
+
+    """  First chart:
+        Plot the closing price on the first chart """
+    ax1.plot(data['Close'], linewidth=2)
+    ax1.set_title(f"{ticker}, Close price")
+
+    """  Second chart
+         Plot the RSI  """
+    ax2.set_title('Relative Strength Index')
+    ax2.plot(rsi, color='orange', linewidth=1)
+    """ Add two horizontal lines, signalling the buy and sell ranges. """
+    """ Oversold """
+    ax2.axhline(30, linestyle='--', linewidth=1.5, color='green')
+    """  Overbought """
+    ax2.axhline(70, linestyle='--', linewidth=1.5, color='red')
+
+    """  Save  charts  to  file """
+    if filename is None:
+        filename = f"{ticker}_{period}_RSI_chart.png"
+    plt.savefig(filename)
+    print(f"График сохранен как {filename}")
+
+    """ Display the charts """
+    plt.show()
