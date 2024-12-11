@@ -46,9 +46,11 @@
 
 #### 2. **data_download.py:**
 
-- **fetch_stock_data(ticker, period):** Получает исторические данные об акциях для указанного тикера и временного периода. Возвращает DataFrame с данными.
+- **fetch_stock_data(ticker, period):** 
+    Получает исторические данные об акциях для указанного тикера и временного периода. Возвращает DataFrame с данными.
 
-- **add_moving_average(data, window_size):** Добавляет в DataFrame колонку со скользящим средним, рассчитанным на основе цен закрытия.
+- **add_moving_average(data, window_size):** 
+    Добавляет в DataFrame колонку со скользящим средним, рассчитанным на основе цен закрытия.
 
 - **calculate_and_display_average_price(data):**
     """
