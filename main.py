@@ -11,12 +11,22 @@ def main():
           "2г, 5г, 10л, " "с начала года, макс.")
 
     ticker = input("Введите тикер акции (например, «AAPL» для Apple Inc):»")
-    period = input("Введите период для данных (например, '1mo' для одного месяца): ")
+    x = input("Выберите диапазон дат анализа  данных - период ('P')  либо даты начала и конца ('D) ")
+    print(x)
+    if x.lower() == 'p':
+        period = input("Введите период для данных (например, '1mo' для одного месяца): ")
+    else:
+        start = input("Введите дату начала анализа в формате Y-M-D): ")
+        end = input("Введите дату конца анализа в формате Y-M-D): ")
+        period = start + '_' + end
+
     threshold = input("Введите порог оценки колебаний цены в %:")
 
     # Fetch stock data
-    stock_data = dd.fetch_stock_data(ticker, period)
-#    print(stock_data)
+    if x.lower() == 'p':
+        stock_data = dd.fetch_stock_data('Googl', period='1mo')
+    else:
+        stock_data = dd.fetch_stock_data_1(ticker, start, end)
 
     # Generate filename and save DataFrame in .csv format
     filename = f"{ticker}_{period}_DataFrame.csv"

@@ -33,6 +33,12 @@ def create_and_save_plot(data, ticker, period, filename=None):
 
 
 def create_and_save_rsi_plot(data, ticker, period, rsi, filename=None):
+    """
+    function get DataFrame(data),  ticker, period of analyze, rsi table
+    and  filename (optional) and create two charts  with "Close" data
+    and RSI  at  the  same page.  Page image is saved in .png file.
+    """
+
     """  Create new list  for picture. """
     plt.figure(figsize=(10, 6))
     """  Create two charts on the same figure."""

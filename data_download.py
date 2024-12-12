@@ -4,10 +4,20 @@ import yfinance as yf
 def fetch_stock_data(ticker, period='1mo'):
     """
     function downloads  data of given ticker
-    for given period  and  return DataFrame.
+    for given period  before current  date
+    and  return DataFrame.
     """
     stock = yf.Ticker(ticker)
     data = stock.history(period=period)
+    return data
+
+
+def fetch_stock_data_1(ticker, start, end):
+    """
+    function downloads  data of given ticker
+    for given start-end period  and  return DataFrame.
+    """
+    data = yf.download(ticker, start, end, multi_level_index=False)
     return data
 
 
@@ -60,6 +70,10 @@ def export_data_to_csv(data, filename):
 
 
 def rsi_calculation(data):
+    """
+    function get DataFrame(data),  calculate
+    and  return RSI table
+    """
     change = data["Close"].diff()
     change.dropna(inplace=True)
     print("==========================")
