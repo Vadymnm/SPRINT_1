@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-
-def create_and_save_plot(data, ticker, period, filename=None):
+#style = 'seaborn-v0_8'
+#style = 'Solarize_Light2'
+def create_and_save_plot(data, ticker, period, style, filename=None):
     plt.figure(figsize=(10, 6))
-
+    plt.style.use(style)
     if 'Date' not in data:
         if pd.api.types.is_datetime64_any_dtype(data.index):
             dates = data.index.to_numpy()
@@ -32,7 +33,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
     print(f"График сохранен как {filename}")
 
 
-def create_and_save_rsi_plot(data, ticker, period, rsi, filename=None):
+def create_and_save_rsi_plot(data, ticker, period, rsi, style, filename=None):
     """
     function get DataFrame(data),  ticker, period of analyze, rsi table
     and  filename (optional) and create two charts  with "Close" data
@@ -41,6 +42,7 @@ def create_and_save_rsi_plot(data, ticker, period, rsi, filename=None):
 
     """  Create new list  for picture. """
     plt.figure(figsize=(10, 6))
+    plt.style.use(style)
     """  Create two charts on the same figure."""
     ax1 = plt.subplot2grid((10, 1), (0, 0), rowspan=4, colspan=1)
     ax2 = plt.subplot2grid((10, 1), (6, 0), rowspan=4, colspan=1)
