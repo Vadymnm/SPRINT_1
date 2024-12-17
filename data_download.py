@@ -1,4 +1,5 @@
 import yfinance as yf
+import statistics
 
 
 def fetch_stock_data(ticker, period='1mo'):
@@ -76,7 +77,7 @@ def rsi_calculation(data):
     """
     change = data["Close"].diff()
     change.dropna(inplace=True)
-    print("==========================")
+#    print("==========================")
 
     # Create two copies of the Closing price Series
     change_up = change.copy()
@@ -92,5 +93,17 @@ def rsi_calculation(data):
     avg_up = change_up.rolling(14).mean()
     avg_down = change_down.rolling(14).mean().abs()
     rsi = 100 * avg_up / (avg_up + avg_down)
-
     return rsi
+
+def calculate_and_display_standard_deviation(data):
+    """
+    function get DataFrame(data), calculate
+    standard_deviation price of "Closed" data.
+    Result is printed out in console.
+    """
+    x = statistics.stdev(data['Close'])
+#    x = data['Close'].mean()
+    print('--------------------------------------------------')
+    print('Standard_deviation of Closed price for period  is:', round(x, 3))
+    print('--------------------------------------------------')
+    return x

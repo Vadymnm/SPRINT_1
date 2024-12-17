@@ -10,7 +10,9 @@ def main():
           "AMZN (Amazon.com Inc), TSLA (Tesla Inc).")
     print("Общие периоды времени для данных о запасах включают: 1д, 5д, 1мес, 3мес, 6мес, 1г, "
           "2г, 5г, 10л, " "с начала года, макс.")
+    print()
     print(' ============= Ввод  исходных  данных ==================')
+    print()
     ticker = input("Введите тикер акции (например, «AAPL» для Apple Inc):»")
     x = input("Выберите диапазон дат анализа  данных - период ('P')  либо даты начала и конца ('D) ")
     print(x)
@@ -32,8 +34,9 @@ def main():
     i = int(input("Введите номер желательного стиля графика 'style' из  приведенного списка(0,4,5,8,9,11,16,26):"))
     style = plt.style.available[i]
     print('style =', style)
-
+    print()
     print("******************** POGRAMM  START *****************************")
+    print()
 
     # Fetch stock data
     if x.lower() == 'p':
@@ -56,6 +59,9 @@ def main():
 
     # Price fluctuation  analysis
     dd.notify_if_strong_fluctuations(stock_data, threshold)
+
+    # Standard_deviation of Closed price calculation
+    st_dev = dd.calculate_and_display_standard_deviation(stock_data)
 
     # RSI  calculftion
     rsi = dd.rsi_calculation(stock_data)
